@@ -2,7 +2,8 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "my-app",
   "main": "src/index.ts",
-  "compatibility_date": "2025-02-18"
+  "compatibility_date": "2025-02-18",
+  "vars": "{"DATABASE_URL" : "prisma: //accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiYzZkOTAxNjgtOWIzYS00NjhhLThjZTUtNmU5ZDRmYTliZDNmIiwidGVuYW50X2lkIjoiNWVjMDlmODBkMGZmOTY0Y2VhZjI2MTFjMzY0ZDJhMzFiYmRiMWE2YjRjYjE4Y2MwN2IzZTZmNzhmZWUzNzU0ZCIsImludGVybmFsX3NlY3JldCI6IjdjMTY5ODM2LTRlYzMtNDhlMS04YWQ0LWU0OWQyYWUxMDJjNSJ9.eIXcUrARIa-jNzSMRtpMQgZw8zdFmVhbosMdl3bAwoQ"}
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
