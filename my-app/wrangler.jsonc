@@ -3,7 +3,10 @@
   "name": "my-app",
   "main": "src/index.ts",
   "compatibility_date": "2025-02-18",
-  "vars": "{"DATABASE_URL" : "prisma: //accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiYzZkOTAxNjgtOWIzYS00NjhhLThjZTUtNmU5ZDRmYTliZDNmIiwidGVuYW50X2lkIjoiNWVjMDlmODBkMGZmOTY0Y2VhZjI2MTFjMzY0ZDJhMzFiYmRiMWE2YjRjYjE4Y2MwN2IzZTZmNzhmZWUzNzU0ZCIsImludGVybmFsX3NlY3JldCI6IjdjMTY5ODM2LTRlYzMtNDhlMS04YWQ0LWU0OWQyYWUxMDJjNSJ9.eIXcUrARIa-jNzSMRtpMQgZw8zdFmVhbosMdl3bAwoQ"}
+  "vars": {
+    "DATABASE_URL": "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiZjYzYWI1MmEtODU4Mi00YmUyLTg4ODctOTNlNDk1N2ZmYTRhIiwidGVuYW50X2lkIjoiYzQ4YTQ1MzBlYzE3NzJlYzA2NzQ2ZmRjNDg0Yjk5NmVhNzI2NDMyODI0YTZkYTBiOWE3NDY1MGI1YjUyZDExMCIsImludGVybmFsX3NlY3JldCI6Ijg3MTllOTg0LWZhZTgtNDYxNS1hOTFjLTY5NjI5ZDRlZGFjNiJ9.jEpt-sNFtQm3DBBxCb-0636bLC1HiFXF_EDamZFeKtc",
+    "JWT_SECRET": "blog-password"
+  }
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
