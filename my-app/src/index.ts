@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { genSaltSync, hashSync } from 'bcrypt-ts'
+import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts'
 import { decode, verify, sign } from "hono/jwt"
 
 
@@ -51,5 +51,29 @@ app.post('/api/v1/user/signup', async (c) => {
   }
   //done
 
+})
+
+app.post("/api/v1/user/signin", async (c) => {
+  const body = await c.req.json();
+  //accesing database
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate())
+  //done
+
+  try {
+
+    const signup = await prisma.user.findFirst(
+      {
+        where: {
+          email: body.email,
+        }
+      }
+    )
+    return c.json(signup?.password)
+  } catch (e) {
+    console.log("not found")
+  }
+  return c.text("Fsdf")
 })
 export default app
