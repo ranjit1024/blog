@@ -1,5 +1,10 @@
 
+import { useNavigate } from "react-router-dom"
+
+
 export function SignIn() {
+    const navigate = useNavigate();
+
     return <div className="grid grid-cols-[55%,45%] h-[100vh]">
 
         <div className="inset-0">
@@ -72,7 +77,9 @@ export function SignIn() {
                     Sign In
                 </button>
                 <div className="text-slate-900 font-[500] text-center mt-1.5">
-                    Don't have Account? <span className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950">Sing Up</span>
+                    Don't have Account? <span onClick={(e) => {
+                        navigate("/")
+                    }} className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950">Sing Up</span>
                 </div>
             </div>
 
