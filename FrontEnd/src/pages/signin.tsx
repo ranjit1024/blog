@@ -1,5 +1,5 @@
 
-export function Singup() {
+export function SignIn() {
     return <div className="grid grid-cols-[55%,45%] h-[100vh]">
 
         <div className="inset-0">
@@ -24,24 +24,11 @@ export function Singup() {
 
         <div className="bg-gradient-to-r from-slate-50 to-slate-100 font-inter flex flex-col  h-[100%]w-[100%] justify-center items-center gap-6">
 
-            <p className="text-2xl font-inter text-slate-950 font-medium ">Create Account</p>
-            <div className="w-[90%] min-w-[200px] ">
-                <div className="relative ">
-                    <label htmlFor="f-name" >First name</label>
-                    <input type="text" className="w-full f-name pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="First Name" />
-
-                </div>
-            </div>
 
 
 
-            <div className="w-[90%]  min-w-[200px]">
-                <div className="relative">
-                    <label htmlFor="input" >Last Name</label>
-                    <input type="text" className="w-full pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Last Name" />
 
-                </div>
-            </div>
+
 
 
             <div className="w-[90%] min-w-[200px]">
@@ -82,10 +69,10 @@ export function Singup() {
 
 
                 <button type="button" className="text-white w-[100%] bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30">
-                    Sign Up
+                    Sign In
                 </button>
                 <div className="text-slate-900 font-[500] text-center mt-1.5">
-                    already have an account? <span className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950">Sing In</span>
+                    Don't have Account? <span className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950">Sing Up</span>
                 </div>
             </div>
 
