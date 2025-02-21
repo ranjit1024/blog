@@ -2,8 +2,8 @@ import { Hono } from "hono";
 
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts'
-import { decode, verify, sign } from "hono/jwt"
+import { genSaltSync, hashSync, compare, compareSync } from 'bcrypt-ts'
+import { decode, verify, sign, jwt } from "hono/jwt"
 
 export const userRouter = new Hono<{
   Bindings: {
@@ -38,6 +38,7 @@ userRouter.post('/signup', async (c) => {
         password: hash
       }
     })
+
     const jwt = await sign({
       id: user.id
     }, c.env.JWT_SECRET)
@@ -63,18 +64,41 @@ userRouter.post("/signin", async (c) => {
   //performaing passwrod checking 
   try {
 
-    const signup = await prisma.user.findFirst(
+    const user = await prisma.user.findFirst(
       {
         where: {
-          email: body.email,
+          email: body.email
         }
       }
     )
-    let hashPasswrord = signup?.password;
-    let userOrNot = compareSync(body.password, hashPasswrord) // not errro because of type checing it gives error
-    return c.json(userOrNot)
-    //done
-  } catch (e) {
+    const hashPasswrord = user?.password || "";
+    const userOrNot = compareSync(JSON.stringify(body.password), hashPasswrord)
+
+
+
+
+
+    if (!user) {
+      c.status(411);
+      return c.text('Invaid')
+    }
+
+    // if (!userOrNot) {
+    //   c.status(400)
+    //   return c.json({
+    //     msg: "password incorrect"
+    //   })
+    // }
+
+    const jwt = await sign({
+      id: user.id
+    }, c.env.JWT_SECRET)
+
+    return c.json({
+      token: jwt
+    })
+  }
+  catch (e) {
     c.status(403);
     return c.text("User Not found")
   }

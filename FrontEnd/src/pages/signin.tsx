@@ -69,7 +69,7 @@ export function SignIn() {
                     <div className="absolute top-8 right-2">
 
                         {
-                            passwrodToggle ? <HidePasswordComp show={passwrodToggle} setShow={setPasswrodToggle} /> : <ShowPasswordComp hide={passwrodToggle} setHide={setPasswrodToggle} />
+                            passwrodToggle ? <HidePasswordComp setShow={setPasswrodToggle} /> : <ShowPasswordComp setHide={setPasswrodToggle} />
                         }
 
                     </div>
@@ -86,12 +86,11 @@ export function SignIn() {
                     Sign In
                 </button>
                 <div className="text-slate-900 font-[500] text-center mt-1.5">
-                    Don't have Account? <span onClick={(e) => {
+                    Don't have Account? <span onClick={() => {
                         navigate("/")
                     }} className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950">Sing Up</span>
                 </div>
             </div>
-
 
 
 

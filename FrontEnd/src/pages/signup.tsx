@@ -81,7 +81,7 @@ export function Singup() {
                     <div className="absolute top-8 right-2">
 
                         {
-                            passwrodToggle ? <HidePasswordComp show={passwrodToggle} setShow={setPasswrodToggle} /> : <ShowPasswordComp hide={passwrodToggle} setHide={setPasswrodToggle} />
+                            passwrodToggle ? <HidePasswordComp setShow={setPasswrodToggle} /> : <ShowPasswordComp setHide={setPasswrodToggle} />
                         }
 
                     </div>
@@ -104,13 +104,13 @@ export function Singup() {
             <div className="w-[90%]">
 
 
-                <button type="button" onClick={(e) => {
+                <button type="button" onClick={() => {
 
                 }} className="text-white w-[100%] bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30">
                     Sign Up
                 </button>
                 <div className="text-slate-900 font-[500] text-center mt-1.5">
-                    already have an account? <span className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950" onClick={(e) => {
+                    already have an account? <span className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950" onClick={() => {
                         navigate("/signin")
                     }}  >Sing In</span>
                 </div>
