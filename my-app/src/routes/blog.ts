@@ -97,9 +97,31 @@ blogRouter.put('/', async (c) => {
     }
 })
 
+blogRouter.get('/bulk', async (c) => {
 
-blogRouter.get("/", async (c) => {
-    const body = await c.req.json();
+    //prisma connection
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+    //
+    try {
+
+        const blogs = await prisma.blog.findMany({
+            take: 5,
+            orderBy: {
+                id: 'asc'
+            }
+        });
+        return c.json(blogs)
+    } catch (err) {
+        return c.json('fdlsk')
+    }
+})
+
+
+blogRouter.get("/:id", async (c) => {
+
+    const id = c.req.param("id")
     //prisma connection
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -109,7 +131,7 @@ blogRouter.get("/", async (c) => {
 
         const blog = await prisma.blog.findFirst({
             where: {
-                id: body.id,
+                id: Number(id),
             }
         })
         return c.json({
@@ -120,23 +142,8 @@ blogRouter.get("/", async (c) => {
     catch (err) {
         c.status(411);
         return c.json({
-            msg: "somethng went wrong"
+            msg: "somethng went wrong lkj"
         })
     }
 })
 
-blogRouter.get('/bulk', async (c) => {
-
-    //prisma connection
-    const prisma = new PrismaClient({
-        datasourceUrl: c.env.DATABASE_URL,
-    }).$extends(withAccelerate())
-    //
-    const blogs = await prisma.blog.findMany({
-        take: 5,
-        orderBy: {
-            id: 'asc'
-        }
-    });
-    return c.json(blogs)
-})
