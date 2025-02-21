@@ -91,7 +91,7 @@ export function SignIn() {
                 <div className="text-slate-900 font-[500] text-center mt-1.5">
                     already have an account? <span className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950" onClick={() => {
                         navigate("/")
-                    }}  >Sing In</span>
+                    }}  >Sing Up</span>
                 </div>
             </div>
 
