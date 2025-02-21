@@ -4,37 +4,34 @@ import { useNavigate } from "react-router-dom"
 
 import { ShowPasswordComp } from "../components/passwordEye";
 import { HidePasswordComp } from "../components/passwordEye";
-
+import SecondSide, { } from "../components/second";
+import { BlogingComp } from "../components/blog";
+import { BlogingComp2 } from "../components/blog";
 
 export function Singup() {
     const navigate = useNavigate();
     const [passwrodToggle, setPasswrodToggle] = useState(false)
 
-    return <div className="grid grid-cols-[55%,45%] h-[100vh]">
-
-        <div className="inset-0">
-            <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] [&>div]:absolute [&>div]:left-0 [&>div]:right-0 [&>div]:top-0 [&>div]:-z-10 [&>div]:m-auto [&>div]:h-[310px] [&>div]:w-[310px] [&>div]:rounded-full [&>div]:bg-slate-500 [&>div]:opacity-20 [&>div]:blur-[100px]">
-                <div></div>
+    return <div className="grid grid-cols-[50%,50%] h-[100%] w-[100%] overflow-hidden">
+        <div className="flex flex-col relative justify-start items-center bg-gray-200 bg-opacity-30 ">
+            <div className="relative left-32">
+                <SecondSide />
             </div>
 
-            <div className="font-inter  w-[95%]  h-[100%] font-[500] text-slate-700
-             text-3xl flex justify-center items-center m-auto flex-col" >
-                <div className="text-shadow:_7px_1px_6px_#5a5b5e text-center font-semibold">
-                    “Your intuition knows what to write, so get out of the way.”
-                </div>
-
-                <div className="mt-10 text-blue-900 font-[400] text-right ">
-                    <p>
-                        —Ray Bradbury
-                    </p>
-                </div>
-
-
+            <div className=" absolute top-10 left-10 blog-comp z-10 ">
+                <BlogingComp></BlogingComp>
             </div>
+
+            <div className="flex justify-end absolute mr-10 margin  bottom-10 blog-comp z-10 ">
+                <BlogingComp2></BlogingComp2>
+            </div>
+
+
 
         </div>
 
-        <div className=" font-inter bg-slate-100 bg-opacity-50 flex flex-col  h-[100%]w-[100%] justify-center items-center gap-8">
+
+        <div className=" font-inter bg-white z-10 flex flex-col h-screen w-[100%] justify-center items-center gap-8">
 
             <p className="text-2xl font-inter text-slate-950 font-medium sha">Create Account</p>
 
