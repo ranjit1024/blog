@@ -9,7 +9,7 @@ export function BlogingComp() {
 }
 
 export function BlogingComp2() {
-    return <div className=" font-inter w-[80%] scale-[88%] isolate bg-white font-normal text-[1.3rem] p-5  bg-opacity-90 rounded-lg  shadow-[0_3px_10px_rgb(0,0,0,0.2)]  "
+    return <div className=" font-inter w-[85%] scale-[90%] isolate bg-white font-normal text-[1.3rem] p-5  bg-opacity-90 rounded-lg  shadow-[0_3px_10px_rgb(0,0,0,0.2)]  "
 
     >
         <span className="text-[1.3rem] font-[500] text-blue-700 ">#2</span>
