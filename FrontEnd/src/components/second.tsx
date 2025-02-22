@@ -9,7 +9,6 @@ export default function SecondSide() {
         loop: true,
         autoplay: true,
         animationData: animationData,
-
         rendererSettings: {
             preserveAspectRatio: "xMidYMid slice"
         }
