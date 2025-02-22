@@ -5,6 +5,7 @@ import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts'
 import { decode, verify, sign, } from "hono/jwt"
 import { JWTPayload } from "hono/utils/jwt/types";
 import { Context } from "hono/jsx";
+import { blogInput, updateBlogInput } from "@ranjitdas2048/common";
 
 
 export const blogRouter = new Hono<{
@@ -38,6 +39,13 @@ blogRouter.use("/*", async (c, next) => {
 //added blog adding login
 blogRouter.post('/', async (c) => {
     const body = await c.req.json();
+    const { success } = blogInput.safeParse(body);
+    if (!success) {
+        c.status(403);
+        return c.json({
+            msg: "Ivalid Input"
+        })
+    }
     //prisma connection
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -71,6 +79,13 @@ blogRouter.post('/', async (c) => {
 
 blogRouter.put('/', async (c) => {
     const body = await c.req.json();
+    const { success } = updateBlogInput.safeParse(body);
+    if (!success) {
+        c.status(403);
+        return c.json({
+            msg: "Invalid Input"
+        })
+    }
     //prisma connection
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,

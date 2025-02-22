@@ -3,7 +3,9 @@ import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { genSaltSync, hashSync, compare, compareSync } from 'bcrypt-ts'
-import { decode, verify, sign, jwt } from "hono/jwt"
+import { sign } from "hono/jwt"
+import { signupInput, singinInput, } from "@ranjitdas2048/common";
+
 
 export const userRouter = new Hono<{
   Bindings: {
@@ -15,6 +17,15 @@ export const userRouter = new Hono<{
 
 userRouter.post('/signup', async (c) => {
   const body = await c.req.json();
+  const { success } = signupInput.safeParse(body);
+  if (!success) {
+    c.status(403);
+    return c.json({
+      msg: "Invalid Input"
+    })
+  }
+  //zod validation
+
   //prisma connection logic
 
   const prisma = new PrismaClient({
@@ -55,6 +66,14 @@ userRouter.post('/signup', async (c) => {
 
 userRouter.post("/signin", async (c) => {
   const body = await c.req.json();
+  //zod validation
+  const { success } = singinInput.safeParse(body)
+  if (!success) {
+    c.status(403);
+    return c.json({
+      msg: 'Invaid Input'
+    })
+  }
   //accesing database
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
