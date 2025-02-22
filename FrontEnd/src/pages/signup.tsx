@@ -18,11 +18,11 @@ export function Singup() {
                 <SecondSide />
             </div>
 
-            <div className=" absolute top-10 left-10 blog-comp z-10 ">
+            <div className=" absolute top-10 left-2 blog-comp z-10 ">
                 <BlogingComp></BlogingComp>
             </div>
 
-            <div className="flex justify-end absolute mr-10 margin  bottom-10 blog-comp z-10 ">
+            <div className="flex justify-end absolute ml-10  bottom-10 blog-comp z-10 ">
                 <BlogingComp2></BlogingComp2>
             </div>
 
