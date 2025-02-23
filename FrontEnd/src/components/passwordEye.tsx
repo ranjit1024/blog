@@ -8,7 +8,7 @@ export function ShowPasswordComp({ setHide }: { setHide: React.Dispatch<React.Se
 }
 
 export function HidePasswordComp({ setShow }: { setShow: React.Dispatch<React.SetStateAction<boolean>> }) {
-    return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 opacity-50" onClick={() => {
+    return <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="size-6 opacity-50 hover:cursor-pointer hover:opacity-75" onClick={() => {
 
         setShow(false)
     }}>
