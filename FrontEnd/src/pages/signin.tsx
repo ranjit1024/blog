@@ -7,10 +7,30 @@ import { HidePasswordComp } from "../components/passwordEye";
 import SecondSide, { } from "../components/second";
 import { BlogingComp } from "../components/blog";
 import { BlogingComp2 } from "../components/blog";
+import axios from "axios";
+import { SigninInput, } from "@ranjitdas2048/common";
+
+
+
 
 export function SignIn() {
     const navigate = useNavigate();
     const [passwrodToggle, setPasswrodToggle] = useState(false)
+    const [signInBody, setSigninbody] = useState<SigninInput>({
+        email: "",
+        password: ""
+    });
+
+
+    const api = axios.create({
+        baseURL: 'http://127.0.0.1:8787',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
+    });
+
+
 
     return <div className="grid grid-cols-[50%,50%] h-[100%] w-[100%] overflow-hidden">
         <div className="flex flex-col relative justify-start items-center bg-gray-200 bg-opacity-30 ">
@@ -41,7 +61,13 @@ export function SignIn() {
             <div className="w-[90%] min-w-[200px]">
                 <div className="relative">
                     <label htmlFor="email" >Email</label>
-                    <input type="text" id="email" className="w-full pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="example@gmail.com" />
+                    <input type="text" id="email" className="w-full pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="example@gmail.com"
+                        onChange={(e) => {
+                            setSigninbody({
+                                ...signInBody,
+                                email: e.target.value
+                            })
+                        }} />
                 </div>
             </div>
 
@@ -53,7 +79,14 @@ export function SignIn() {
             <div className="w-[90%] min-w-[200px]">
                 <div className="relative">
                     <label htmlFor="password">Password</label>
-                    <input type={passwrodToggle ? "text" : "password"} id="password" className="w-full pl-3 pr-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Your password" />
+                    <input type={passwrodToggle ? "text" : "password"} id="password" className="w-full pl-3 pr-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Your password"
+                        onChange={(e) => {
+                            setSigninbody({
+                                ...signInBody,
+                                password: e.target.value
+                            })
+                        }}
+                    />
 
 
 
@@ -83,8 +116,8 @@ export function SignIn() {
             <div className="w-[90%]">
 
 
-                <button type="button" onClick={() => {
-
+                <button type="button" onClick={async () => {
+                    console.log(signInBody)
                 }} className="text-white w-[100%] bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30">
                     Sign In
                 </button>
