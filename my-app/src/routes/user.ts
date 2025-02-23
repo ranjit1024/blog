@@ -38,7 +38,7 @@ userRouter.post('/signup', async (c) => {
 
   //hashing password
   const salt = genSaltSync(10);
-  const hash = hashSync(JSON.stringify(body.password), salt);
+  const hash = hashSync(body.password, salt);
   //done
 
   //creting user
@@ -75,7 +75,7 @@ userRouter.post("/signin", async (c) => {
     return c.json({
       msg: 'Invaid Input'
     })
-  }
+  };;;;
   //accesing database
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
@@ -93,14 +93,14 @@ userRouter.post("/signin", async (c) => {
       }
     )
     const hashPasswrord = user?.password || "";
-    const userOrNot = compareSync(JSON.stringify(body.password), hashPasswrord)
+    const userOrNot = compareSync(body.password, hashPasswrord)
 
 
 
 
 
-    if (!user) {
-      c.status(411);
+    if (!user || !userOrNot) {
+      c.status(401);
       return c.text('Invaid')
     }
 
