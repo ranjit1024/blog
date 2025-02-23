@@ -1,5 +1,6 @@
 export function TostDanger({ msg }: { msg: string }) {
-    return <div className=" absolute top-2  right-4 max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-neutral-800 dark:border-neutral-700" role="alert" aria-labelledby="hs-toast-error-example-label">
+    return <div className=" absolute top-2   right-4 max-w-xs bg-white border border-gray-200 rounded-xl  dark:bg-neutral-800 dark:border-neutral-700" role="alert" aria-labelledby="hs-toast-error-example-label
+    shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]">
         <div className="flex p-4">
             <div className="shrink-0">
                 <svg className="  shrink-0 size-4 text-red-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
