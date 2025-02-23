@@ -6,7 +6,7 @@ import { decode, verify, sign, } from "hono/jwt"
 import { JWTPayload } from "hono/utils/jwt/types";
 import { Context } from "hono/jsx";
 import { blogInput, updateBlogInput } from "@ranjitdas2048/common";
-
+import { cors } from "hono/cors";
 
 export const blogRouter = new Hono<{
     Bindings: {

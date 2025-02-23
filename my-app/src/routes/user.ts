@@ -5,6 +5,7 @@ import { withAccelerate } from '@prisma/extension-accelerate'
 import { genSaltSync, hashSync, compare, compareSync } from 'bcrypt-ts'
 import { sign } from "hono/jwt"
 import { signupInput, singinInput, } from "@ranjitdas2048/common";
+import { cors } from "hono/cors";
 
 
 export const userRouter = new Hono<{
@@ -15,6 +16,7 @@ export const userRouter = new Hono<{
 }>
 
 
+userRouter.use('/*', cors())
 userRouter.post('/signup', async (c) => {
   const body = await c.req.json();
   const { success } = signupInput.safeParse(body);
@@ -57,7 +59,7 @@ userRouter.post('/signup', async (c) => {
   }
   catch (e) {
     console.log("data", e)
-    c.status(411)
+    c.status(409)
     return c.text("User already exists with this email")
   }
   //done
@@ -102,12 +104,6 @@ userRouter.post("/signin", async (c) => {
       return c.text('Invaid')
     }
 
-    // if (!userOrNot) {
-    //   c.status(400)
-    //   return c.json({
-    //     msg: "password incorrect"
-    //   })
-    // }
 
     const jwt = await sign({
       id: user.id

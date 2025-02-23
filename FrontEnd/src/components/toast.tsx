@@ -1,4 +1,4 @@
-export function TostDanger() {
+export function TostDanger({ msg }: { msg: string }) {
     return <div className=" absolute top-2  right-4 max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-neutral-800 dark:border-neutral-700" role="alert" aria-labelledby="hs-toast-error-example-label">
         <div className="flex p-4">
             <div className="shrink-0">
@@ -8,7 +8,7 @@ export function TostDanger() {
             </div>
             <div className="ms-3">
                 <p id="hs-toast-error-example-label" className="text-sm text-gray-700 dark:text-neutral-400 font-medium">
-                    Fields cannot be empty
+                    {msg}
                 </p>
             </div>
         </div>

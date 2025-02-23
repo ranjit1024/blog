@@ -9,18 +9,36 @@ import { BlogingComp } from "../components/blog";
 import { BlogingComp2 } from "../components/blog";
 import { SignupInput } from "@ranjitdas2048/common";
 import { TostDanger } from "../components/toast";
+import axios from "axios";
+import Loading from "../components/loading";
+
 
 export function Singup() {
     const navigate = useNavigate();
     const [passwrodToggle, setPasswrodToggle] = useState(false);
     const [isEmpty, setisEmpty] = useState(false);
+    const [sameEmail, setsameEmail] = useState(false);
+
 
     const [signupInputes, setSignupInputes] = useState<SignupInput>({
         firstname: "",
         lastname: "",
         email: "",
         password: ""
-    })
+    });
+
+    const api = axios.create({
+        baseURL: 'http://127.0.0.1:8787',
+        headers: {
+            'Content-Type': 'application/json',
+            // Add any authorization headers if needed
+            // 'Authorization': `Bearer ${token}`
+        }
+    });
+
+    const [isLoading, setisLoading] = useState(false);
+
+
 
     return <div className="grid grid-cols-[50%,50%] h-[100%] w-[100%] overflow-hidden">
         <div className="flex flex-col relative justify-start items-center bg-gray-200 bg-opacity-30 ">
@@ -43,7 +61,11 @@ export function Singup() {
 
         <div className=" font-inter bg-white z-10 flex flex-col h-screen w-[100%] justify-center items-center gap-8">
 
-            <p className="text-2xl font-inter text-slate-950 font-medium sha">Create Account</p>
+            <div className="inline">
+                <span className="text-2xl font-inter text-slate-950 font-medium sha">Create Account</span>
+
+            </div>
+
 
             <div className="flex gap-3 w-[90%]">
                 <div className="w-[90%] min-w-[200px] ">
@@ -54,6 +76,7 @@ export function Singup() {
                                 ...signupInputes,
                                 firstname: e.target.value
                             })
+
                         }} />
 
                     </div>
@@ -133,14 +156,40 @@ export function Singup() {
             <div className="w-[90%]">
 
 
-                <button type="button" onClick={() => {
+                <button type="button" onClick={async () => {
                     if (signupInputes.firstname === "" || signupInputes.lastname === "" || signupInputes.email === "" || signupInputes.password === "") {
                         setisEmpty(true);
+
                         setTimeout(() => {
                             setisEmpty(false)
                         }, 3000)
                         return;
+
                     }
+                    //getting 
+                    try {
+                        setisLoading(true);
+                        const response = await api.post("/api/v1/user/signup", signupInputes)
+                        console.log(response.data);
+                        setisLoading(false)
+                    }
+                    catch (e) {
+                        if (axios.isAxiosError(e)) {
+
+                            if (e.response?.status == 409) {
+                                setsameEmail(true);
+                            }
+                            setTimeout(() => {
+                                setsameEmail(false)
+                            }, 3000);
+                            setisLoading(false);
+
+                        }
+
+                    }
+
+
+                    //done
                 }} className="text-white w-[100%] bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 select-none">
                     Sign Up
                 </button>
@@ -150,17 +199,21 @@ export function Singup() {
                     }}  >Sing In</span>
                 </div>
                 {
-                    isEmpty ? <TostDanger></TostDanger> : null
+                    isEmpty ? <TostDanger msg="Field Cannot be empty"></TostDanger> : null
+                }
+
+                {
+                    sameEmail ? <TostDanger msg="User already exists with this email" /> : null
                 }
             </div>
 
         </div>
 
+        {
+            isLoading ? <Loading /> : null
+        }
 
 
     </div >
 }
-
-
-
 
