@@ -137,8 +137,8 @@ export function SignIn() {
                             signInBody
                         );
                         console.log(response.status)
-                        localStorage.setItem("token", JSON.stringify(response.data));
                         if (response.status === 200) {
+                            localStorage.setItem("token", JSON.stringify(response.data));
                             navigate("/blog");
                         }
                         setIsLoading(false);

@@ -61,7 +61,6 @@ blogRouter.post('/', async (c) => {
                 content: body.content,
                 published: false,
                 authorId: Number(authorId)
-
             }
         })
 
