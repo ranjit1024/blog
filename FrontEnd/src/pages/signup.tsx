@@ -171,8 +171,8 @@ export function Singup() {
                     try {
                         setisLoading(true);
                         const response = await api.post("/api/v1/user/signup", signupInputes)
-                        console.log(response.data);
-                        setisLoading(false)
+                        localStorage.setItem("token", JSON.stringify(response.data));
+                        setisLoading(false);
                     }
                     catch (e) {
                         if (axios.isAxiosError(e)) {

@@ -135,7 +135,12 @@ export function SignIn() {
                         setIsLoading(true)
                         const response = await api.post("/api/v1/user/signin",
                             signInBody
-                        )
+                        );
+                        console.log(response.status)
+                        localStorage.setItem("token", JSON.stringify(response.data));
+                        if (response.status === 200) {
+                            navigate("/blog");
+                        }
                         setIsLoading(false);
 
 
