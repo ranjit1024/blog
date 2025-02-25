@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 export function UserComp() {
     const navigate = useNavigate();
 
-    return <div className="p-4 bg-gray-900 z-10 shadow-lg text-white absolute right-10  dark:text top-[60px] w-[40vh]  font-inter rounded-sm transition-all duration-75">
+    return <div className="p-4 bg-gray-900 z-10 shadow-lg text-white absolute right-10  dark:text top-[67px] w-[40vh]  font-inter rounded-sm transition-all duration-75">
         <div className="absolute -top-[6px] right-1 ">
             <div className="w-0 h-0 
  border-l-[10px] border-l-transparent
@@ -39,7 +39,7 @@ export function UserComp() {
 
 
         <div className="mt-2 duration-400 mb-[2px]  font-inter text-[1.07rem] flex gap-2 items-center ">
-            <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800  dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[100%] mt-2">Sign out</button>
+            <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800  dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-[6px] text-center me-2 mb-2 w-[100%] mt-2">Sign out</button>
 
         </div>
     </div>
