@@ -14,8 +14,8 @@ export const singinInput = z.object({
 })
 
 export const blogInput = z.object({
-    title: z.string().min(50),
-    content: z.string().min(200)
+    title: z.string().max(50),
+    content: z.string().max(1000)
 })
 
 export const updateBlogInput = z.object({

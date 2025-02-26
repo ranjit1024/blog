@@ -2,20 +2,14 @@
 import { AppBar } from "../components/appbar";
 import { BlogsComp } from "../components/blogs";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 
 import { useBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
 import { jwtDecode, JwtPayload } from "jwt-decode";
 
 
-const api = axios.create({
-    baseURL: 'http://127.0.0.1:8787',
-    headers: {
-        'Content-Type': 'application/json',
 
-    }
-});
 
 export function Blog() {
     const Navigate = useNavigate();
@@ -24,8 +18,8 @@ export function Blog() {
 
         <AppBar />
 
-        <div className="add mt-10   w-[90%] m-auto border-gray-100 flex justify-center items-center">
-            <div className="flex  items-center gap-2 hover:shadow-inner transition-all duration-700 hover:cursor-text bg-gray-50 w-[70%] px-5 py-2 rounded-lg border-2 border-slate-400 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] " onClick={() => {
+        <div className="add mt-10   w-[70%] m-auto border-gray-100 flex justify-center items-center">
+            <div className="flex w-[100%]  items-center gap-2 hover:shadow-inner transition-all duration-700 hover:cursor-text bg-gray-50 px-5 py-2 rounded-lg border-2 border-slate-400 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] " onClick={() => {
                 Navigate("/add");
 
             }}>

@@ -5,6 +5,7 @@ import { RecoilRoot } from 'recoil'
 import { Blog } from './pages/blog'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AddBlog } from './pages/addblog'
+import { YourBlogs } from './pages/yourBlogs'
 
 function App() {
   return <div>
@@ -16,6 +17,7 @@ function App() {
           <Route path='/signin' element={<SignIn />}></Route>
           <Route path='/blog' element={<Blog />}></Route>
           <Route path='/add' element={<AddBlog />}></Route>
+          <Route path='/yourblogs' element={<YourBlogs />}></Route>
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

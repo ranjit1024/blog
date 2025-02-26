@@ -1,13 +1,23 @@
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
+
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8787',
 
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': JSON.parse(localStorage.getItem("token") || "").token
     }
 });
+
+// adding dynmic headers
+api.interceptors.request.use((config) => {
+    const token = JSON.parse(localStorage.getItem("token") || "{}").token;
+    if (token) {
+        config.headers.Authorization = token;
+    }
+    return config
+})
+// done
 
 export interface BlogTypes {
     "content": string;
@@ -21,11 +31,18 @@ export const useBlogs = () => {
     const [blogs, setBlogs] = useState<BlogTypes[]>([]);
 
     useEffect(() => {
-        api.get("/api/v1/blog/bulk")
-            .then(response => {
-                setBlogs(response.data);
-                setLoading(true);
-            })
+        try {
+
+            api.get("/api/v1/blog/bulk")
+                .then(response => {
+                    setLoading(true);
+                    setBlogs(response.data);
+                })
+        } catch (e) {
+            if (isAxiosError(e)) {
+                console.log(e)
+            }
+        }
     }, []);
 
     return {
