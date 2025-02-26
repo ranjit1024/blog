@@ -19,7 +19,7 @@ export function Blog() {
         <AppBar />
 
         <div className="add mt-10   w-[70%] m-auto border-gray-100 flex justify-center items-center">
-            <div className="flex w-[100%]  items-center gap-2 hover:shadow-inner transition-all duration-700 hover:cursor-text bg-gray-50 px-5 py-2 rounded-lg border-2 border-slate-400 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] " onClick={() => {
+            <div className="flex w-[100%]  items-center gap-2 hover:shadow-inner transition-all duration-700 hover:cursor-text hover:border-green-300 bg-gray-50 px-5 py-2 rounded-lg border-2 border-slate-200 shadow-sm] " onClick={() => {
                 Navigate("/add");
 
             }}>
@@ -30,8 +30,10 @@ export function Blog() {
                 <p className="  text-[20px] font-medium text-slate-700 font-inter " >Add New Blog</p>
             </div>
         </div>
-        <div className="p-[1px] bg-slate-100 mt-10">
+        <div className="p-[0.1px] bg-slate-100 mt-10">
         </div>
+
+
 
 
         <div className="mt-3 flex justify-center items-center flex-col w-[100%]">

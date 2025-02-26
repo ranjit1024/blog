@@ -1,6 +1,6 @@
-import axios, { isAxiosError } from "axios";
+import axios, { AxiosError, isAxiosError } from "axios";
 import { useEffect, useState } from "react";
-
+import { JwtPayload, jwtDecode } from "jwt-decode";
 const api = axios.create({
     baseURL: 'http://127.0.0.1:8787',
 
@@ -50,3 +50,33 @@ export const useBlogs = () => {
         blogs
     }
 }
+
+export function UseYourBlogs() {
+    const [loading, setLoading] = useState(false);
+    const [blogs, setBlogs] = useState<BlogTypes[]>([]);
+
+    const token = localStorage.getItem('token');
+    let id = "";
+    if (token) {
+        const decode = jwtDecode(token) as JwtPayload & { id: string }
+        id = decode.id;
+    }
+
+    try {
+        useEffect(() => {
+            api.get(`/api/v1/blog/${id}`)
+                .then(response => {
+                    setLoading(true)
+                    setBlogs(response.data.blog)
+                });
+        }, [])
+
+    }
+    catch (e) {
+        if (isAxiosError(e)) {
+            console.log(e)
+        }
+    }
+
+    return { blogs, loading };
+} 
