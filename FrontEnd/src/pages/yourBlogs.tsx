@@ -3,7 +3,7 @@ import { AppBar } from "../components/appbar";
 import { BlogsComp } from "../components/blogs";
 import { UseYourBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
-import App from "../App";
+
 export function YourBlogs() {
     const token = localStorage.getItem('token');
     const { loading, blogs } = UseYourBlogs();
