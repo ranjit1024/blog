@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 
 export function AddBlog() {
-    const navigate = useNavigate();
     let [desInput, setdesInput] = useState<number | null>(0);
     let [titleInput, setTitleInput] = useState<number | null>(0);
     let [wrongInput, setWronginput] = useState(false);
@@ -29,6 +28,7 @@ export function AddBlog() {
         }
     });
 
+    let navigate = useNavigate();
 
     return <div className="flex flex-col w-[100%] ">
         <AppBar></AppBar>

@@ -8,6 +8,8 @@ import { Context } from "hono/jsx";
 import { blogInput, updateBlogInput } from "@ranjitdas2048/common";
 import { cors } from "hono/cors";
 
+
+
 export const blogRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string,
@@ -119,7 +121,6 @@ blogRouter.get('/bulk', async (c) => {
     }).$extends(withAccelerate())
     //
     try {
-
         const blogs = await prisma.blog.findMany({
             take: 5,
             orderBy: {
