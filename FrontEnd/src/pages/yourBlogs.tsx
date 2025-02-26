@@ -8,6 +8,7 @@ export function YourBlogs() {
     const token = localStorage.getItem('token');
     const { loading, blogs } = UseYourBlogs();
     let userName = "";
+
     if (token) {
         const decode = jwtDecode(token) as JwtPayload & { email: string }
         let email = decode.email;
@@ -34,7 +35,7 @@ export function YourBlogs() {
         <div className="w-[100%] flex justify-center flex-col items-center">
 
             {
-                blogs && blogs.map(blog => <BlogsComp email={"lkj"} title={blog.title} descripition={blog.content} />)
+                blogs && blogs.map(blog => <BlogsComp email={userName} title={blog.title} descripition={blog.content} />)
             }
 
         </div>
