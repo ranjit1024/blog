@@ -2,7 +2,7 @@ import axios, { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 const api = axios.create({
-    baseURL: ' https://my-app.ranjitdas2048.workers.dev',
+    baseURL: 'http://127.0.0.1:8787',
 
     headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,9 @@ api.interceptors.request.use((config) => {
 export interface BlogTypes {
     "content": string;
     "title": string;
-    "userid": string
+    "userid": string,
+    "author": { email: string }
+
 }
 
 
@@ -36,7 +38,8 @@ export const useBlogs = () => {
             api.get("/api/v1/blog/bulk")
                 .then(response => {
                     setLoading(true);
-                    setBlogs(response.data);
+                    setBlogs(response.data.blogs);
+
                 })
         } catch (e) {
             if (isAxiosError(e)) {
@@ -47,7 +50,7 @@ export const useBlogs = () => {
 
     return {
         loading,
-        blogs
+        blogs,
     }
 }
 

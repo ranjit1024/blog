@@ -9,7 +9,7 @@ export function AppBar() {
     const [userProfile, setUserprofile] = useState(false);
     return <div>
 
-        <div className="bg-gray-50 flex justify-between realtive w-[100%] p-3 shadow-lg">
+        <div className="bg-gray-50 flex justify-between realtive w-[100%] p-3 shadow-md">
             {userProfile ? <UserComp></UserComp> : null}
 
 

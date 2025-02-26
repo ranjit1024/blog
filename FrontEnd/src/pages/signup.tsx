@@ -29,7 +29,7 @@ export function Singup() {
     });
 
     const api = axios.create({
-        baseURL: ' https://my-app.ranjitdas2048.workers.dev',
+        baseURL: 'http://127.0.0.1:8787',
         headers: {
             'Content-Type': 'application/json',
             // Add any authorization headers if needed
@@ -170,9 +170,13 @@ export function Singup() {
                     //getting 
                     try {
                         setisLoading(true);
-                        const response = await api.post("/api/v1/user/signup", signupInputes)
-                        localStorage.setItem("token", JSON.stringify(response.data));
+                        const response = await api.post("/api/v1/user/signup", signupInputes);
+                        if (response.status === 200) {
+                            localStorage.setItem("token", JSON.stringify(response.data));
+                            navigate("/blog")
+                        }
                         setisLoading(false);
+
                     }
                     catch (e) {
                         if (axios.isAxiosError(e)) {

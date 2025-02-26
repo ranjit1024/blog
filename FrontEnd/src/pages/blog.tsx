@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
-import { jwtDecode, JwtPayload } from "jwt-decode";
+
 
 
 
@@ -47,12 +47,15 @@ export function Blog() {
 
 function AllBlogs() {
     const { loading, blogs } = useBlogs();
-    const token = localStorage.getItem('token');
-    let email = "";
-    if (token) {
-        const decode = jwtDecode(token) as JwtPayload & { email: string }
-        email = decode.email;
-    }
+
+
+
+
+
+
+
+
+
 
     if (!loading) {
         return <div className="w-[90%]">
@@ -65,7 +68,8 @@ function AllBlogs() {
     return <div className="w-[100%] flex justify-center flex-col items-center">
 
         {
-            blogs && blogs.map(blog => <BlogsComp email={email} title={blog.title} descripition={blog.content} />)
+
+            blogs && blogs.map(blog => <BlogsComp email={blog.author.email} title={blog.title} descripition={blog.content} />)
         }
 
     </div>
