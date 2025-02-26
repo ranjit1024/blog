@@ -4,7 +4,7 @@ import user from "../assets/user_6471334.png";
 export function BlogsComp({ email, title, descripition }: { email: string, title: string, descripition: string }) {
     return (
 
-        <div className="p-8 mt-2 w-[90%] rounded-md bg-gray-50 hover:cursor-pointer hover:shadow-md justify-center items-center trasnition-all duration-700"
+        <div className="p-8 mt-9 w-[90%] rounded-md bg-gray-50  border-1 border-gray-100 hover:cursor-pointer hover:shadow-md hover:scale-[101%] hover:bg-white justify-center items-center trasnition-all duration-500"
         >
             <div className="w-[100%] flex gap-1  items-center justify-between">
                 <div className="w-[3%] flex gap-1 items-center">
