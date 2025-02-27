@@ -6,6 +6,7 @@ import Loading from "../components/loading";
 import { TostDanger } from "../components/toast";
 import SuccessComp from "../components/success";
 import { useNavigate } from "react-router-dom";
+import { PROD } from "../config";
 
 
 export function AddBlog() {
@@ -21,7 +22,7 @@ export function AddBlog() {
     const [isLoading, setIsloading] = useState(false);
 
     const api = axios.create({
-        baseURL: 'http://127.0.0.1:8787',
+        baseURL: `${PROD}`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': JSON.parse(localStorage.getItem("token") || "{}").token
