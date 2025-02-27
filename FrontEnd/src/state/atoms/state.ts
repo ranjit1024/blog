@@ -1,8 +1,7 @@
 import axios, { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { JwtPayload, jwtDecode } from "jwt-decode";
-import { data } from "react-router-dom";
-import { Blog } from "../../pages/blog";
+
 import { PROD } from "../../config";
 const api = axios.create({
     baseURL: `${PROD}`,
@@ -40,6 +39,7 @@ type FetchBlogsResponse = {
 
 
 export const fetchBlogs = async ({ pageParam = 10 }): Promise<FetchBlogsResponse> => {
+    console.log(pageParam)
     const response = await api.get("/api/v1/blog/bulk");
 
     console.log('Fetched data:', response.data); // Debugging log
