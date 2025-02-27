@@ -11,7 +11,7 @@ import { SignupInput } from "@ranjitdas2048/common";
 import { TostDanger } from "../components/toast";
 import axios from "axios";
 import Loading from "../components/loading";
-
+import { PROD } from "../config";
 
 export function Singup() {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ export function Singup() {
     });
 
     const api = axios.create({
-        baseURL: 'http://127.0.0.1:8787',
+        baseURL: `${PROD}`,
         headers: {
             'Content-Type': 'application/json',
             // Add any authorization headers if needed

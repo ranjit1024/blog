@@ -11,8 +11,7 @@ import axios, { isAxiosError } from "axios";
 import { SigninInput, } from "@ranjitdas2048/common";
 import { TostDanger } from "../components/toast";
 import Loading from "../components/loading";
-
-
+import { PROD } from "../config";
 
 
 export function SignIn() {
@@ -30,7 +29,7 @@ export function SignIn() {
 
 
     const api = axios.create({
-        baseURL: 'http://127.0.0.1:8787',
+        baseURL: `${PROD}`,
         headers: {
             'Content-Type': 'application/json',
 

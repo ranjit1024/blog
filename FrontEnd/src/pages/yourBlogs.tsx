@@ -1,8 +1,8 @@
 import { jwtDecode, JwtPayload } from "jwt-decode";
 import { AppBar } from "../components/appbar";
-import { BlogsComp } from "../components/blogs";
 import { UseYourBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
+import { UpdateComp } from "../components/update";
 
 export function YourBlogs() {
     const token = localStorage.getItem('token');
@@ -22,7 +22,6 @@ export function YourBlogs() {
         return <div className="w-[100%]">
             <AppBar />
             <p className="font-inter my-4 ml-1  drop-shadow-lg text-4xl font-[500] ">Good {`morning`} {`${userName}`}</p>
-
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
@@ -35,7 +34,7 @@ export function YourBlogs() {
         <div className="w-[100%] flex justify-center flex-col items-center">
 
             {
-                blogs && blogs.map(blog => <BlogsComp email={userName} title={blog.title} descripition={blog.content} />)
+                blogs && blogs.map(blog => <UpdateComp email={userName} title={blog.title} descripition={blog.content} />)
             }
 
         </div>

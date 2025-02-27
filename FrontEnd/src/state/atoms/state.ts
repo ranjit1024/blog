@@ -1,8 +1,11 @@
 import axios, { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { JwtPayload, jwtDecode } from "jwt-decode";
+import { data } from "react-router-dom";
+import { Blog } from "../../pages/blog";
+import { PROD } from "../../config";
 const api = axios.create({
-    baseURL: 'http://127.0.0.1:8787',
+    baseURL: `${PROD}`,
 
     headers: {
         'Content-Type': 'application/json',
@@ -28,31 +31,26 @@ export interface BlogTypes {
 }
 
 
-export const useBlogs = () => {
-    const [loading, setLoading] = useState(false);
-    const [blogs, setBlogs] = useState<BlogTypes[]>([]);
+type FetchBlogsResponse = {
+    blogs: BlogTypes[];
+    nextCursor?: number; // Ensure this is a number or undefined
+};
 
-    useEffect(() => {
-        try {
 
-            api.get("/api/v1/blog/bulk")
-                .then(response => {
-                    setLoading(true);
-                    setBlogs(response.data.blogs);
 
-                })
-        } catch (e) {
-            if (isAxiosError(e)) {
-                console.log(e)
-            }
-        }
-    }, []);
+
+export const fetchBlogs = async ({ pageParam = 10 }): Promise<FetchBlogsResponse> => {
+    const response = await api.get("/api/v1/blog/bulk");
+
+    console.log('Fetched data:', response.data); // Debugging log
 
     return {
-        loading,
-        blogs,
-    }
-}
+        blogs: response.data.blogs, // Ensure this is an array
+        nextCursor: response.data.nextCursor, // Ensure API return
+    };
+};
+
+
 
 export function UseYourBlogs() {
     const [loading, setLoading] = useState(false);

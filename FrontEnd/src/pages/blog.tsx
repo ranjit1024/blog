@@ -3,12 +3,30 @@ import { AppBar } from "../components/appbar";
 import { BlogsComp } from "../components/blogs";
 import { useNavigate } from "react-router-dom";
 
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { useBlogs } from "../state/atoms/state";
+import { fetchBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
+import axios from "axios";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+import { PROD } from "../config";
+const api = axios.create({
+    baseURL: `${PROD}`,
 
+    headers: {
+        'Content-Type': 'application/json',
+    }
+});
 
-
+// adding dynmic headers
+api.interceptors.request.use((config) => {
+    const token = JSON.parse(localStorage.getItem("token") || "{}").token;
+    if (token) {
+        config.headers.Authorization = token;
+    }
+    return config
+})
 
 
 export function Blog() {
@@ -46,31 +64,50 @@ export function Blog() {
 
 
 function AllBlogs() {
-    const { loading, blogs } = useBlogs();
 
+    const { data, status, error, fetchNextPage } = useInfiniteQuery({
+        queryKey: ['blogs'],
+        queryFn: fetchBlogs,
+        initialPageParam: 1,
+        getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined
 
+    })
 
-
-
-
-
-
-
-
-    if (!loading) {
-        return <div className="w-[90%]">
+    const { ref, inView } = useInView();
+    useEffect(() => {
+        if (inView) {
+            fetchNextPage()
+        }
+    }, [fetchNextPage, inView])
+    if (status === "pending") {
+        return <div className="w-[100%]">
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
-
         </div>
     }
-    return <div className="w-[100%] flex justify-center flex-col items-center">
+    if (status === "error") {
+        return <div>
+            {error.message}
+        </div>
+    }
+    if (status === "success") {
+        return <div className="w-[100%]">
+            {
+                data.pages.map((page) => {
+                    return <div className=" flex justify-center flex-col items-center">
+                        {
+                            page.blogs.map((item) => {
+                                console.log(item.author.email)
+                                return <BlogsComp email={item.author.email} title={item.title} descripition={item.content}></BlogsComp>
+                            })
+                        }
+                    </div>
+                })
+            }
+            <div ref={ref}></div>
+        </div >
+    }
 
-        {
 
-            blogs && blogs.map(blog => <BlogsComp email={blog.author.email} title={blog.title} descripition={blog.content} />)
-        }
-
-    </div>
 }
