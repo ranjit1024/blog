@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
 import { PROD } from "../../config";
+import { data } from "react-router-dom";
+
 const api = axios.create({
     baseURL: `${PROD}`,
 
@@ -31,22 +33,28 @@ export interface BlogTypes {
 
 
 type FetchBlogsResponse = {
-    blogs: BlogTypes[];
-    nextCursor?: number; // Ensure this is a number or undefined
+    blogs: BlogTypes[]; // Ensure this is a number or undefined
+    nextPage: number | null
+    currentPage: number
 };
 
 
+const LIMIT = 2;
 
-
-export const fetchBlogs = async ({ pageParam = 10 }): Promise<FetchBlogsResponse> => {
+export const fetchBlogs = async ({ pageParam }: { pageParam: number }): Promise<FetchBlogsResponse> => {
     console.log(pageParam)
-    const response = await api.get("/api/v1/blog/bulk");
+    const response = await api.get(`/api/v1/blog/bulk/${pageParam}`);
 
-    console.log('Fetched data:', response.data); // Debugging log
+    console.log('Fetched data:',); // Debugging log
+    console.log('Fetched data j:', response.data.blogs); // Debugging log
+    console.log("param", pageParam)
+
 
     return {
         blogs: response.data.blogs, // Ensure this is an array
-        nextCursor: response.data.nextCursor, // Ensure API return
+        currentPage: pageParam,
+        nextPage: pageParam + LIMIT < response.data.blogs.length ? pageParam + LIMIT : null
+        // Ensure API return
     };
 };
 

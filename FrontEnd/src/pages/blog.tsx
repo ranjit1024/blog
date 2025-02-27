@@ -68,17 +68,20 @@ function AllBlogs() {
     const { data, status, error, fetchNextPage } = useInfiniteQuery({
         queryKey: ['blogs'],
         queryFn: fetchBlogs,
-        initialPageParam: 1,
-        getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined
+        initialPageParam: 3,
+        getNextPageParam: (lastPage) => lastPage.nextPage
 
     })
 
     const { ref, inView } = useInView();
+
     useEffect(() => {
         if (inView) {
             fetchNextPage()
         }
-    }, [fetchNextPage, inView])
+    }, [fetchNextPage, inView]);
+
+
     if (status === "pending") {
         return <div className="w-[100%]">
             <BlogScalaton></BlogScalaton>

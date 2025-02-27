@@ -113,7 +113,8 @@ blogRouter.put('/', async (c) => {
     }
 })
 
-blogRouter.get('/bulk', async (c) => {
+blogRouter.get('/bulk/:get', async (c) => {
+    const get = Number(c.req.param("get"));
 
     //prisma connection
     const prisma = new PrismaClient({
@@ -122,7 +123,7 @@ blogRouter.get('/bulk', async (c) => {
     //
     try {
         const blogs = await prisma.blog.findMany({
-            take: 5,
+            take: get,
             include: {
                 author: true
             },
