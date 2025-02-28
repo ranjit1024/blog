@@ -34,28 +34,38 @@ export interface BlogTypes {
 
 type FetchBlogsResponse = {
     blogs: BlogTypes[]; // Ensure this is a number or undefined
-    nextPage: number | null
-    currentPage: number
+    currentPage: number;
+    totalPages: number;
 };
 
 
-const LIMIT = 2;
 
-export const fetchBlogs = async ({ pageParam }: { pageParam: number }): Promise<FetchBlogsResponse> => {
-    console.log(pageParam)
-    const response = await api.get(`/api/v1/blog/bulk/${pageParam}`);
+// export const fetchBlogs = async ({ pageParam }: { pageParam: number }): Promise<FetchBlogsResponse> => {
+//     console.log(pageParam)
+//     const response = await api.get(`/api/v1/blog/bulk/${pageParam}`);
 
-    console.log('Fetched data:',); // Debugging log
-    console.log('Fetched data j:', response.data.blogs); // Debugging log
-    console.log("param", pageParam)
+//     console.log('Fetched data:',); // Debugging log
+//     console.log('Fetched data j:', response.data.blogs); // Debugging log
+//     console.log("param", pageParam)
 
 
-    return {
-        blogs: response.data.blogs, // Ensure this is an array
-        currentPage: pageParam,
-        nextPage: pageParam + LIMIT < response.data.blogs.length ? pageParam + LIMIT : null
-        // Ensure API return
-    };
+//     return {
+//         blogs: response.data.blogs, // Ensure this is an array
+//         currentPage: pageParam,
+//         nextPage: response.data.blogs.length ? pageParam + LIMIT : null
+
+//     };
+// };''
+
+
+export const fetchBlogs = async ({ pageParam = 1 }: { pageParam: number }): Promise<FetchBlogsResponse> => {
+
+    const res = await api.get(`/api/v1/blog/bulk`, {
+        params: { page: pageParam, limit: 2 }
+    });
+
+    console.log(res.data)
+    return res.data;
 };
 
 

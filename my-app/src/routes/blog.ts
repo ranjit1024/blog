@@ -7,6 +7,8 @@ import { JWTPayload } from "hono/utils/jwt/types";
 import { Context } from "hono/jsx";
 import { blogInput, updateBlogInput } from "@ranjitdas2048/common";
 import { cors } from "hono/cors";
+import { etag } from "hono/etag";
+import { skip } from "@prisma/client/runtime/library";
 
 
 
@@ -113,32 +115,47 @@ blogRouter.put('/', async (c) => {
     }
 })
 
-blogRouter.get('/bulk/:get', async (c) => {
-    const get = Number(c.req.param("get"));
+blogRouter.get('/bulk', async (c) => {
+
 
     //prisma connection
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate())
     //
+
+
     try {
+        const page = c.req.query('page') || 1;
+        const limit = c.req.query('limit') || 3;
+        const pageNum = parseInt(page as string, 10) || 1;
+        const limitNum = parseInt(limit as string, 10) || 10;
+        const skip = (pageNum - 1) * limitNum;
+
+        // Fetch paginated blogs
         const blogs = await prisma.blog.findMany({
-            take: get,
-            include: {
-                author: true
-            },
-            orderBy: {
-                id: 'asc',
-            }
+            skip,
+            take: limitNum,
+            orderBy: { id: "desc" }, // Sort by newest
         });
 
+        // Get total count for pagination
+        const totalBlogs = await prisma.blog.count();
 
         return c.json({
             blogs,
+            currentPage: pageNum,
+            totalPages: Math.ceil(totalBlogs / limitNum),
+            totalBlogs,
+        });
 
+    }
+    catch (e) {
+        console.log(e);
+        c.status(403)
+        return c.json({
+            msg: 'something went wrong'
         })
-    } catch (err) {
-        return c.json('fdlsk')
     }
 })
 
@@ -161,6 +178,7 @@ blogRouter.get("/:id", async (c) => {
         })
         return c.json({
             blog: blog,
+
         })
 
     }
