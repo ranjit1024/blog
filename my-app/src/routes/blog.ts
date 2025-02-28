@@ -9,6 +9,7 @@ import { blogInput, updateBlogInput } from "@ranjitdas2048/common";
 import { cors } from "hono/cors";
 import { etag } from "hono/etag";
 import { skip } from "@prisma/client/runtime/library";
+import { auth } from "hono/utils/basic-auth";
 
 
 
@@ -134,6 +135,16 @@ blogRouter.get('/bulk', async (c) => {
 
         // Fetch paginated blogs
         const blogs = await prisma.blog.findMany({
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                author: {
+                    select: {
+                        email: true
+                    }
+                }
+            },
             skip,
             take: limitNum,
             orderBy: { id: "desc" }, // Sort by newest

@@ -129,7 +129,7 @@ function AllBlogs() {
                         {
                             page?.blogs.map(blog => {
                                 return <div className="w-[100%] flex justify-center flex-col items-center" >
-                                    <BlogsComp email="fsdf" title={blog.title} descripition={blog.content} ></BlogsComp>
+                                    <BlogsComp email={blog.author.email} title={blog.title} descripition={blog.content} ></BlogsComp>
                                 </div>
                             })
                         }
