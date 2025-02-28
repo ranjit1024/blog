@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 
 import { PROD } from "../../config";
-import { data } from "react-router-dom";
+
 
 const api = axios.create({
     baseURL: `${PROD}`,
@@ -40,22 +40,7 @@ type FetchBlogsResponse = {
 
 
 
-// export const fetchBlogs = async ({ pageParam }: { pageParam: number }): Promise<FetchBlogsResponse> => {
-//     console.log(pageParam)
-//     const response = await api.get(`/api/v1/blog/bulk/${pageParam}`);
 
-//     console.log('Fetched data:',); // Debugging log
-//     console.log('Fetched data j:', response.data.blogs); // Debugging log
-//     console.log("param", pageParam)
-
-
-//     return {
-//         blogs: response.data.blogs, // Ensure this is an array
-//         currentPage: pageParam,
-//         nextPage: response.data.blogs.length ? pageParam + LIMIT : null
-
-//     };
-// };''
 
 
 export const fetchBlogs = async ({ pageParam = 1 }: { pageParam: number }): Promise<FetchBlogsResponse> => {
@@ -64,7 +49,7 @@ export const fetchBlogs = async ({ pageParam = 1 }: { pageParam: number }): Prom
         params: { page: pageParam, limit: 2 }
     });
 
-    console.log(res.data)
+
     return res.data;
 };
 

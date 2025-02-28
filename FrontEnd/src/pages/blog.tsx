@@ -13,8 +13,7 @@ import {
 import { fetchBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
 import axios from "axios";
-import { useInView } from "react-intersection-observer";
-import { useEffect } from "react";
+
 import { PROD } from "../config";
 const api = axios.create({
     baseURL: `${PROD}`,
