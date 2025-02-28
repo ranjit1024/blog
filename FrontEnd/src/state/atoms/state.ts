@@ -10,24 +10,26 @@ const api = axios.create({
 
     headers: {
         'Content-Type': 'application/json',
+        'Authorization': JSON.parse(localStorage.getItem('token') || "").token
     }
 });
 
 // adding dynmic headers
-api.interceptors.request.use((config) => {
-    const token = JSON.parse(localStorage.getItem("token") || "{}").token;
-    if (token) {
-        config.headers.Authorization = token;
-    }
-    return config
-})
+// api.interceptors.request.use((config) => {
+//     const token = JSON.parse(localStorage.getItem("token") || "{}").token;
+//     if (token) {
+//         config.headers.Authorization = token;
+//     }
+//     return config
+// })
 // done
 
 export interface BlogTypes {
     "content": string;
     "title": string;
     "userid": string,
-    "author": { email: string }
+    "author": { email: string },
+    "publishdate": Date
 
 }
 

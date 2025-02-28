@@ -12,32 +12,16 @@ import {
 
 import { fetchBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
-import axios from "axios";
 
-import { PROD } from "../config";
-const api = axios.create({
-    baseURL: `${PROD}`,
 
-    headers: {
-        'Content-Type': 'application/json',
-    }
-});
 
 const queryClient = new QueryClient();
-// adding dynmic headers
-api.interceptors.request.use((config) => {
-    const token = JSON.parse(localStorage.getItem("token") || "{}").token;
-    if (token) {
-        config.headers.Authorization = token;
-    }
-    return config
-})
-
 
 
 export function Blog() {
     const Navigate = useNavigate();
-
+    const token = JSON.parse(localStorage.getItem('token') || "").token
+    console.log(token)
     return <QueryClientProvider client={queryClient}>
         <div>
 
@@ -116,8 +100,8 @@ function AllBlogs() {
         </div>
     }
     if (status === "error") {
-        return <div>
-            "nor good"
+        return <div className="w-[100%] flex justify-center items-center">
+            <p className="font-inter text-2xl">No Blog Found</p>
         </div>
     }
 
@@ -129,7 +113,7 @@ function AllBlogs() {
                         {
                             page?.blogs.map(blog => {
                                 return <div className="w-[100%] flex justify-center flex-col items-center" >
-                                    <BlogsComp email={blog.author.email} title={blog.title} descripition={blog.content} ></BlogsComp>
+                                    <BlogsComp email={blog.author.email} title={blog.title} descripition={blog.content} date={String(blog.publishdate).split('T')[0]} ></BlogsComp>
                                 </div>
                             })
                         }

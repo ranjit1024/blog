@@ -1,18 +1,18 @@
 import user from "../assets/user_6471334.png";
 
 
-export function BlogsComp({ email, title, descripition }: { email: string, title: string, descripition: string }) {
+export function BlogsComp({ email, title, descripition, date }: { email: string, title: string, descripition: string, date: string }) {
     return (
 
         <div className="p-8 mt-9 w-[90%] rounded-md bg-gray-50  border-1 border-gray-100 hover:cursor-pointer hover:shadow-md hover:scale-[101%] hover:bg-white justify-center items-center trasnition-all duration-500"
         >
             <div className="w-[100%] flex gap-1  items-center justify-between">
-                <div className="w-[3%] flex gap-1 items-center">
+                <div className="w-[3%] flex gap-2 items-center">
                     <img src={user} alt="" />
-                    <p className="text-[20px] font-normal ">{email}</p>
+                    <p className="text-[21px] font-normal">{email}</p>
                 </div>
                 <div className="date">
-                    <p>date</p>
+                    <p className="font-inter">{date}</p>
                 </div>
             </div>
 

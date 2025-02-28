@@ -1,16 +1,10 @@
 import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { genSaltSync, hashSync, compareSync } from 'bcrypt-ts'
-import { decode, verify, sign, } from "hono/jwt"
-import { JWTPayload } from "hono/utils/jwt/types";
-import { Context } from "hono/jsx";
-import { blogInput, updateBlogInput } from "@ranjitdas2048/common";
 import { cors } from "hono/cors";
-import { etag } from "hono/etag";
-import { skip } from "@prisma/client/runtime/library";
-import { auth } from "hono/utils/basic-auth";
+import { decode, verify, sign, } from "hono/jwt"
 
+import { blogInput, updateBlogInput } from "@ranjitdas2048/common";
 
 
 export const blogRouter = new Hono<{
@@ -22,6 +16,8 @@ export const blogRouter = new Hono<{
         userId: string;
     }
 }>();
+
+blogRouter.use('/*', cors())
 
 blogRouter.use("/*", async (c, next) => {
     const token = c.req.header('Authorization') || "";
@@ -118,7 +114,8 @@ blogRouter.put('/', async (c) => {
 
 blogRouter.get('/bulk', async (c) => {
 
-
+    const token = c.req.header('Authorization') || "";
+    console.log(token)
     //prisma connection
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
@@ -139,6 +136,7 @@ blogRouter.get('/bulk', async (c) => {
                 id: true,
                 title: true,
                 content: true,
+                publishdate: true,
                 author: {
                     select: {
                         email: true
@@ -147,7 +145,7 @@ blogRouter.get('/bulk', async (c) => {
             },
             skip,
             take: limitNum,
-            orderBy: { id: "desc" }, // Sort by newest
+            orderBy: { publishdate: 'asc' }, // Sort by newest
         });
 
         // Get total count for pagination
