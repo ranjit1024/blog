@@ -1,7 +1,7 @@
 import user from "../assets/user_6471334.png";
 
 
-export function UpdateComp({ email, title, descripition }: { email: string, title: string, descripition: string }) {
+export function UpdateComp({ email, title, descripition, date }: { email: string, title: string, descripition: string, date: string }) {
     return (
 
         <div className="p-8 mt-9 w-[90%] rounded-md bg-gray-50  border-1 border-gray-100 hover:cursor-pointer hover:shadow-md hover:scale-[101%] hover:bg-white justify-center items-center trasnition-all duration-500"
@@ -12,7 +12,7 @@ export function UpdateComp({ email, title, descripition }: { email: string, titl
                     <p className="text-[20px] font-normal ">{email}</p>
                 </div>
                 <div className="date">
-                    <p>date</p>
+                    <p className="font-inter">{date}</p>
                 </div>
             </div>
 

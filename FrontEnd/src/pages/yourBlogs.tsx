@@ -34,7 +34,7 @@ export function YourBlogs() {
         <div className="w-[100%] flex justify-center flex-col items-center">
 
             {
-                blogs && blogs.map(blog => <UpdateComp email={userName} title={blog.title} descripition={blog.content} />)
+                blogs && blogs.map(blog => <UpdateComp email={userName} title={blog.title} descripition={blog.content} date={String(blog.publishdate).split('T')[0]} />)
             }
 
         </div>
