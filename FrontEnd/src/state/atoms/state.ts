@@ -10,7 +10,7 @@ const api = axios.create({
 
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': JSON.parse(localStorage.getItem('token') || "").token
+        'Authorization': JSON.parse(localStorage.getItem('token') || "{}").token
     }
 });
 
