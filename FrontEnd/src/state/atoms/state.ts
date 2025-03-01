@@ -10,19 +10,16 @@ const api = axios.create({
 
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': JSON.parse(localStorage.getItem('token') || "{}").token
+
     }
 });
 
-// adding dynmic headers
-// api.interceptors.request.use((config) => {
-//     const token = JSON.parse(localStorage.getItem("token") || "{}").token;
-//     if (token) {
-//         config.headers.Authorization = token;
-//     }
-//     return config
-// })
-// done
+api.interceptors.request.use((config) => {
+    config.headers.Authorization = JSON.parse(localStorage.getItem('token') || "{}").token;
+
+    return config;
+});
+
 
 export interface BlogTypes {
     "content": string;
@@ -39,19 +36,11 @@ type FetchBlogsResponse = {
     currentPage: number;
     totalPages: number;
 };
-
-
-
-
-
-
 export const fetchBlogs = async ({ pageParam = 1 }: { pageParam: number }): Promise<FetchBlogsResponse> => {
 
     const res = await api.get(`/api/v1/blog/bulk`, {
         params: { page: pageParam, limit: 2 }
     });
-
-
     return res.data;
 };
 

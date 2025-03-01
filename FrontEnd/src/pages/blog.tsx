@@ -20,8 +20,7 @@ const queryClient = new QueryClient();
 
 export function Blog() {
     const Navigate = useNavigate();
-    const token = JSON.parse(localStorage.getItem('token') || "").token
-    console.log(token)
+    // const token = JSON.parse(localStorage.getItem('token') || "").token
     return <QueryClientProvider client={queryClient}>
         <div>
 
