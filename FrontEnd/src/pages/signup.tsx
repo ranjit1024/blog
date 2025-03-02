@@ -209,7 +209,7 @@ export function Singup() {
                 <div className="text-slate-900 font-[500] text-center mt-1.5">
                     already have an account? <span className="text-blue-600 font-semibold hover:cursor-pointer hover:text-blue-950" onClick={() => {
                         navigate("/signin")
-                    }}  >Sing In</span>
+                    }}  >Sign In</span>
                 </div>
                 {
                     isEmpty ? <TostDanger msg="Field Cannot be empty"></TostDanger> : null
