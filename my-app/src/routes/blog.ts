@@ -145,7 +145,7 @@ blogRouter.get('/bulk', async (c) => {
             },
             skip,
             take: limitNum,
-            orderBy: { publishdate: 'asc' }, // Sort by newest
+            orderBy: { publishdate: 'desc' }, // Sort by newest
         });
 
         // Get total count for pagination
