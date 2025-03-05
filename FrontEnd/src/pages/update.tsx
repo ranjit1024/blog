@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AppBar } from "../components/appbar";
-import { BlogInput } from "@ranjitdas2048/common";
+
 import axios, { isAxiosError } from "axios";
 import Loading from "../components/loading";
 import { TostDanger } from "../components/toast";
