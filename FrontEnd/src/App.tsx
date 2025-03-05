@@ -6,6 +6,7 @@ import { Blog } from './pages/blog'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AddBlog } from './pages/addblog'
 import { YourBlogs } from './pages/yourBlogs'
+import { UpdateBlog } from './pages/update'
 
 const client = new QueryClient();
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/blog' element={<Blog />}></Route>
           <Route path='/add' element={<AddBlog />}></Route>
           <Route path='/yourblogs' element={<YourBlogs />}></Route>
+          <Route path='/update' element={<UpdateBlog />}></Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -2,11 +2,11 @@ import { jwtDecode, JwtPayload } from "jwt-decode";
 import { AppBar } from "../components/appbar";
 import { UseYourBlogs } from "../state/atoms/state";
 import { BlogScalaton } from "../components/scalaton";
-import { UpdateComp } from "../components/update";
+import { Usercomp } from "../components/userBlogs";
 
 export function YourBlogs() {
     const token = localStorage.getItem('token');
-    const { loading, blogs } = UseYourBlogs();
+    const { blogs, loading } = UseYourBlogs();
     let userName = "";
 
     if (token) {
@@ -34,7 +34,7 @@ export function YourBlogs() {
         <div className="w-[100%] flex justify-center flex-col items-center">
 
             {
-                blogs && blogs.map(blog => <UpdateComp email={userName} title={blog.title} descripition={blog.content} date={String(blog.publishdate).split('T')[0]} />)
+                blogs && blogs.map(blog => <Usercomp key={blog.id} email={userName} title={blog.title} id={blog.id} descripition={blog.content} date={String(blog.publishdate).split('T')[0]} />)
             }
 
         </div>

@@ -1,1 +1,1 @@
-export const PROD = "https://my-app.ranjitdas2048.workers.dev"
+export const PROD = "http://127.0.0.1:8787"

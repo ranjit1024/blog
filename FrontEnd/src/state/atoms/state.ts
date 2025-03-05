@@ -27,6 +27,7 @@ export interface BlogTypes {
     "userid": string,
     "author": { email: string },
     "publishdate": Date
+    "id": number
 
 }
 
@@ -74,4 +75,5 @@ export function UseYourBlogs() {
     }
 
     return { blogs, loading };
-} 
+}
+
