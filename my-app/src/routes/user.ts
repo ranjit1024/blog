@@ -16,7 +16,8 @@ export const userRouter = new Hono<{
 }>
 
 
-userRouter.use('/*', cors())
+userRouter.use('/*', cors());
+
 userRouter.post('/signup', async (c) => {
   const body = await c.req.json();
   const { success } = signupInput.safeParse(body);
@@ -56,7 +57,9 @@ userRouter.post('/signup', async (c) => {
       id: user.id,
       email: user.email
     }, c.env.JWT_SECRET)
-    return c.text(jwt)
+    return c.json({
+      token: jwt
+    })
   }
   catch (e) {
     console.log("data", e)

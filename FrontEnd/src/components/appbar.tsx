@@ -3,9 +3,10 @@ import { useState } from "react";
 import logo from "../assets/comment-pen_8034097.png";
 import user from "../assets/user_6471334.png"
 import { UserComp } from "../components/user";
-
+import { useNavigate } from "react-router-dom";
 
 export function AppBar() {
+    const navigate = useNavigate();
     const [userProfile, setUserprofile] = useState(false);
     return <div>
 
@@ -13,7 +14,9 @@ export function AppBar() {
             {userProfile ? <UserComp></UserComp> : null}
 
 
-            <div className="logo w-[100%] ml-5 flex items-center gap-2">
+            <div className="logo w-[100%] ml-5 flex items-center gap-2 hover:cursor-pointer " onClick={() => {
+                navigate('/blog')
+            }}>
                 <img src={logo} className="w-[6%]" alt="" />
 
             </div>

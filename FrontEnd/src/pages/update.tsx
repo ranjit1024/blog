@@ -22,8 +22,8 @@ export function UpdateBlog() {
 
 
     const [Bloginput, setBlogInput] = useState<UpdateInput>({
-        title: "",
-        content: "",
+        title: existsTitle,
+        content: existsdes,
         id: JSON.parse(localStorage.getItem('Blog') ?? "").id || []
     });
 
@@ -38,6 +38,7 @@ export function UpdateBlog() {
     });
 
     let navigate = useNavigate();
+    console.log(Bloginput)
 
     return <div className="flex flex-col w-[100%] ">
         <AppBar></AppBar>
@@ -56,7 +57,7 @@ export function UpdateBlog() {
                             seteistsTitle(e.target.value)
                             setBlogInput({
                                 ...Bloginput,
-                                title: e.target.value
+                                title: ` ${e.target.value}`
                             })
 
 
@@ -92,9 +93,10 @@ export function UpdateBlog() {
                         placeholder=""
                         onChange={(e) => {
                             seteistsDes(e.target.value)
+
                             setBlogInput({
                                 ...Bloginput,
-                                content: e.target.value
+                                content: `${e.target.value}`
                             });
 
                             const eachText = e.target.value;
@@ -143,7 +145,8 @@ export function UpdateBlog() {
                                     setIssuccessful(false);
                                 });
 
-                                navigate("/blog")
+                                navigate("/blog");
+                                localStorage.removeItem('Blog')
 
                             }
                         }
