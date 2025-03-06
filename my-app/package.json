@@ -5,7 +5,7 @@
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
-    "@prisma/client": "^6.3.1",
+    "@prisma/client": "^6.4.1",
     "@prisma/extension-accelerate": "^1.2.2",
     "@ranjitdas2048/common": "^1.8.1",
     "@types/bcrypt": "^5.0.2",
