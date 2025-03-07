@@ -74,7 +74,7 @@ export function AddBlog() {
                 <div className="relative w-full min-w-[200px]">
                     <textarea
                         id="des"
-                        className=" dec peer h-full min-h-[200px] w-full resize-none rounded-[7px] border border-gray-500 border-t-transparent bg-transparent px-3 py-2.5  text-sm  text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-gray-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50 font-inter text-[1rem]"
+                        className=" dec peer h-full   min-h-[200px] w-full resize-none rounded-[7px] border border-gray-500 border-t-transparent bg-transparent px-3 py-2.5  text-sm  text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-gray-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50 font-inter text-[18px]"
                         placeholder=" "
                         onChange={(e) => {
                             setBlogInput({
