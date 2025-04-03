@@ -15,13 +15,28 @@ export function YourBlogs() {
         userName = email.split("@")[0];
 
     }
-    console.log(blogs)
+    
+    let greeting = "";
+
+    const date = new Date();
+    const grettingFactor : number = Number(date.toLocaleTimeString().split(':')[0]);
+
+    if(grettingFactor < 12){
+        greeting = "Morning"
+    }
+    else if(grettingFactor > 12 && grettingFactor < 6 ){
+        greeting = "Afternoon"
+    }
+    else{
+        greeting = "Evening"
+    }
+
 
     if (!loading) {
 
         return <div className="w-[100%]">
             <AppBar />
-            <p className="font-inter my-4 ml-1  drop-shadow-lg text-4xl font-[500] max-md:text-center ">Good {`morning`} {`${userName}`}</p>
+            <p className="font-inter my-5 ml-12  drop-shadow-lg text-4xl font-[500] max-md:text-center ">Good {`${greeting}`} {`${userName}`}</p>
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
@@ -30,7 +45,7 @@ export function YourBlogs() {
     }
     return <div>
         <AppBar />
-        <p className="font-inter my-4 ml-1  drop-shadow-lg text-4xl font-[500] max-md:text-center ">Good {`morning`} {`${userName}`}</p>
+        <p className="font-inter my-5 ml-12  drop-shadow-lg text-4xl font-[500] max-md:text-center dark:text-green-950 ">Good {`${greeting}`} {`${userName}`}</p>
         <div className="w-[100%] flex justify-center flex-col items-center">
 
             {
