@@ -41,8 +41,8 @@ export function Singup() {
 
 
 
-    return <div className="grid grid-cols-[50%,50%] h-[100%] w-[100%] overflow-hidden">
-        <div className="flex flex-col relative justify-start items-center bg-gray-200 bg-opacity-30 ">
+    return <div className="grid  grid-cols-[50%,50%] h-[100%]  w-[100%] max-md:grid-cols-1 max-md:overflow-visible max-md:w-[100vw] max-md:h-[100vh] overflow-hidden">
+        <div className="flex max-md:hidden flex-col relative justify-start items-center bg-gray-200 bg-opacity-30 ">
             <div className="relative left-32">
                 <SecondSide />
             </div>
@@ -60,16 +60,16 @@ export function Singup() {
         </div>
 
 
-        <div className=" font-inter bg-white z-10 flex flex-col h-screen w-[100%] justify-center items-center gap-8">
+        <div className=" font-inter  max-md:w-[100vw] max-md:h-[100vh] bg-white z-10 flex flex-col h-screen w-[100%] justify-center items-center gap-8">
 
             <div className="inline">
-                <span className="text-2xl font-inter text-slate-950 font-medium sha">Create Account</span>
+                <span className="text-2xl font-inter text-slate-950 font-medium ">Create Account</span>
 
             </div>
 
 
-            <div className="flex gap-3 w-[90%]">
-                <div className="w-[90%] min-w-[200px] ">
+            <div className="flex gap-3 w-[90%] max-md:w-[90%] ">
+                <div className="w-[90%]  ">
                     <div className="relative ">
                         <label htmlFor="f-name" >First name</label>
                         <input type="text" id="f-name" className=" w-full f-name pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="First Name" onChange={(e) => {
@@ -85,7 +85,7 @@ export function Singup() {
 
 
 
-                <div className="w-[90%]  min-w-[200px]">
+                <div className="w-[90%] ">
                     <div className="relative">
                         <label htmlFor="lname" >Last Name</label>
                         <input type="text" id="lname" className="w-full pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Last Name" onChange={(e) => {
@@ -100,7 +100,7 @@ export function Singup() {
             </div>
 
 
-            <div className="w-[90%] min-w-[200px]">
+            <div className="w-[90%] ">
                 <div className="relative">
                     <label htmlFor="email" >Email</label>
                     <input type="text" id="email" className="w-full pl-3 pr-10 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="example@gmail.com" onChange={(e) => {
@@ -117,7 +117,7 @@ export function Singup() {
 
 
 
-            <div className="w-[90%] min-w-[200px]">
+            <div className="w-[90%]">
                 <div className="relative">
                     <label htmlFor="password">Password</label>
                     <input type={passwrodToggle ? "text" : "password"} id="password" className="w-full pl-3 pr-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-600 text-sm border border-slate-200 rounded-md transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Your password"

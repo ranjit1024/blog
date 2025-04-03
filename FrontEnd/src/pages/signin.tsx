@@ -38,8 +38,9 @@ export function SignIn() {
 
 
 
-    return <div className="grid grid-cols-[50%,50%] h-[100%] w-[100%] overflow-hidden">
-        <div className="flex flex-col relative justify-start items-center bg-gray-200 bg-opacity-30 ">
+    return <div className="grid grid-cols-[50%,50%] h-[100%] w-[100%] overflow-hidden max-md:grid-cols-1 ">
+
+        <div className="flex max-md:hidden flex-col relative justify-start items-center bg-gray-200 bg-opacity-30 ">
             <div className="relative left-32">
                 <SecondSide />
             </div>
@@ -57,7 +58,7 @@ export function SignIn() {
         </div>
 
 
-        <div className=" font-inter bg-white z-10 flex flex-col h-screen w-[100%] justify-center items-center gap-8">
+        <div className=" font-inter max-md:h-[100vh] max-md:w[100vw] bg-white z-10 flex flex-col h-screen w-[100%] justify-center items-center gap-8">
 
             <p className="text-2xl font-inter text-slate-950 font-medium sha">Sign In</p>
 

@@ -21,7 +21,7 @@ export function YourBlogs() {
 
         return <div className="w-[100%]">
             <AppBar />
-            <p className="font-inter my-4 ml-1  drop-shadow-lg text-4xl font-[500] ">Good {`morning`} {`${userName}`}</p>
+            <p className="font-inter my-4 ml-1  drop-shadow-lg text-4xl font-[500] max-md:text-center ">Good {`morning`} {`${userName}`}</p>
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
             <BlogScalaton></BlogScalaton>
@@ -30,7 +30,7 @@ export function YourBlogs() {
     }
     return <div>
         <AppBar />
-        <p className="font-inter my-4 ml-1  drop-shadow-lg text-4xl font-[500] ">Good {`morning`} {`${userName}`}</p>
+        <p className="font-inter my-4 ml-1  drop-shadow-lg text-4xl font-[500] max-md:text-center ">Good {`morning`} {`${userName}`}</p>
         <div className="w-[100%] flex justify-center flex-col items-center">
 
             {
